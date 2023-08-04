@@ -17,8 +17,6 @@ async def index():
     return fake_data_db
 
 @service.post('/', status_code=201)
-async def add_movie(payload: ConfigDataIn):
-    data = payload.model_dump()
-    fake_data_db.append(data)
+async def add_config(payload: ConfigDataIn):
+    fake_data_db.append(payload)
     return {'id': len(fake_data_db) - 1}
-

@@ -1,21 +1,21 @@
+from peewee import *
 import os
-
-from sqlalchemy import (Column, DateTime, Integer, MetaData, String, Table,
-                        create_engine)
-
-from databases import Database
 
 DATABASE_URI = os.getenv('DATABASE_URI')
 
-engine = create_engine(DATABASE_URI)
-metadata = MetaData()
+db = PostgresqlDatabase('mytest', host='localhost', port=5432, user='postgres', password='mysecretpassword')
 
-configs = Table(
-    'configs',
-    metadata,
-    Column('id', Integer, primary_key=True),
-    Column('name', String(50)),
-    Column('value', String(50)),
-)
+#
+# db = PostgresqlDatabase(DATABASE_URI)
 
-database = Database(DATABASE_URI)
+db.connection()
+
+class ConfigDataIn(Model):
+   name=TextField()
+   value=TextField()
+   class Meta:
+      database=db
+      db_table='ConfigDataIn'
+
+
+db.create_tables([ConfigDataIn])

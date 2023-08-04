@@ -9,6 +9,9 @@ services:
     ports:
       - 8001:8000
     environment:
+      - POSTGRES_USER=conf_db_username
+      - POSTGRES_PASSWORD=conf_db_password
+      - POSTGRES_DB=conf_db_dev
       - DATABASE_URI=postgresql://conf_db_username:conf_db_password@conf_db/conf_db_dev
     depends_on:
       - conf_db
