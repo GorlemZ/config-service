@@ -1,6 +1,7 @@
 asyncpg==0.20.1
 databases[postgresql]==0.2.6
-fastapi==0.48.0
+fastapi==0.100.0
 peewee==3.16.2
 uvicorn==0.11.2
-httpx==0.11.1
+
+httpx==0.16.0
