@@ -21,7 +21,7 @@ services:
     image: postgres:12.1-alpine
     volumes:
       - postgres_data_conf:/var/lib/postgresql/data/
-      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./postgres_scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
       - POSTGRES_USER=conf_db_username
       - POSTGRES_PASSWORD=conf_db_password

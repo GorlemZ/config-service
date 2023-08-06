@@ -1,6 +1,0 @@
-README.md
-setup.py
-crud_conf_service.egg-info/PKG-INFO
-crud_conf_service.egg-info/SOURCES.txt
-crud_conf_service.egg-info/dependency_links.txt
-crud_conf_service.egg-info/top_level.txt
