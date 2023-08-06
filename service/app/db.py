@@ -1,7 +1,7 @@
 from peewee import *
 import os
 
-isTest=False
+isTest=True
 
 USER= os.getenv('POSTGRES_USER')
 PSW= os.getenv('POSTGRES_PASSWORD')
@@ -19,5 +19,8 @@ class ConfigDataIn(Model):
       database=db
       db_table='ConfigDataIn'
 
+class ConfigDataOut(Model):
+    name= CharField(max_length=200)
+    value= CharField(max_length=200)
       
 db.create_tables([ConfigDataIn])
