@@ -3,8 +3,6 @@ import os
 
 isTest=False
 
-
-
 USER= os.getenv('POSTGRES_USER')
 PSW= os.getenv('POSTGRES_PASSWORD')
 DB= os.getenv('POSTGRES_DB_T') if isTest else os.getenv('POSTGRES_DB')

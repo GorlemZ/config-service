@@ -1,14 +1,13 @@
 FROM python:3.8-slim
 
-WORKDIR /src
+WORKDIR /
 
-COPY ./requirements.txt /src/requirements.txt
+COPY ./requirements.txt /requirements.txt
 
 RUN apt-get update \
-    && apt-get install gcc -y \
     && apt-get clean
 
-RUN pip install -r /src/requirements.txt \
+RUN pip install -r /requirements.txt \
     && rm -rf /root/.cache/pip
 
-COPY . /src/
+COPY . .

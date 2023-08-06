@@ -1,7 +1,7 @@
 from typing import List
 from fastapi import APIRouter, HTTPException
 
-from .db import ConfigDataIn
+from app.db import ConfigDataIn
 
 service = APIRouter()
 
