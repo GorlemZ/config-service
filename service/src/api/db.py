@@ -3,15 +3,15 @@ import os
 
 isTest=False
 
-USER= os.getenv('POSTGRES_USER') if isTest else os.getenv('POSTGRES_USER_T')
-PSW= os.getenv('POSTGRES_PASSWORD') if isTest else os.getenv('POSTGRES_PASSWORD_T')
-DB= os.getenv('POSTGRES_DB') if isTest else os.getenv('POSTGRES_DB_T')
-HOST= 'conf_db' if isTest else 'conf_db_test'
-PORT= 5433 if isTest else 5432
 
-db= PostgresqlDatabase(DB, host=HOST, port=PORT, user=USER, password=PSW, autoconnect=False)
 
-db.connect()
+USER= os.getenv('POSTGRES_USER')
+PSW= os.getenv('POSTGRES_PASSWORD')
+DB= os.getenv('POSTGRES_DB_T') if isTest else os.getenv('POSTGRES_DB')
+HOST= 'conf_db'
+PORT= 5432
+
+db= PostgresqlDatabase(DB, host=HOST, port=PORT, user=USER, password=PSW)
 
 
 class ConfigDataIn(Model):
