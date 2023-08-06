@@ -3,3 +3,4 @@ peewee==3.16.2
 uvicorn==0.20.0
 databases[postgresql]==0.2.6
 httpx >=0.23.0,<0.25.0
+pytest== 7.1.3

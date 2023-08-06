@@ -5,22 +5,21 @@ isTest=True
 
 USER= os.getenv('POSTGRES_USER')
 PSW= os.getenv('POSTGRES_PASSWORD')
-DB= os.getenv('POSTGRES_DB_T') if isTest else os.getenv('POSTGRES_DB')
-HOST= 'conf_db'
-PORT= 5432
+DB= 'test' if isTest else os.getenv('POSTGRES_DB')
 
-db= PostgresqlDatabase(DB, host=HOST, port=PORT, user=USER, password=PSW)
+conn_url= f"postgresql://conf_db_username:conf_db_password@conf_db/{DB}"
+
+db= PostgresqlDatabase(conn_url)
 
 
-class ConfigDataIn(Model):
-    name= CharField(max_length=200)
+class ConfigDataDB(Model):
+    id=IntegerField()
+    servicename= CharField(max_length=200)
     value= CharField(max_length=200)
     class Meta:
       database=db
-      db_table='ConfigDataIn'
+      constraints = [SQL('UNIQUE ("name" COLLATE NOCASE)')]
+      table_name='ConfigDataDB'
 
-class ConfigDataOut(Model):
-    name= CharField(max_length=200)
-    value= CharField(max_length=200)
       
-db.create_tables([ConfigDataIn])
+db.create_tables([ConfigDataDB])

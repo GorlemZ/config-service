@@ -10,7 +10,6 @@ app = FastAPI(openapi_url="/api/v1/configdataservice/openapi.json", docs_url="/a
 @app.on_event("shutdown")
 def shutdown():
     db.close()
-    
 
 app.include_router(service, prefix='/api/v1/configdataservice')
 
