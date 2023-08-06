@@ -26,6 +26,10 @@ services:
       - POSTGRES_USER=conf_db_username
       - POSTGRES_PASSWORD=conf_db_password
       - POSTGRES_DB=conf_db_dev
+    ports:
+      - "5432:5432"
+    expose:
+      - 5432
 
   nginx:
     image: nginx:latest
