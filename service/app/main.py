@@ -13,8 +13,4 @@ def shutdown():
 
 app.include_router(service, prefix='/api/v1/configdataservice')
 
-#from docker
 #http://localhost:8001/api/v1/configdataservice/docs
-
-#from local
-#http://localhost:8000/api/v1/configdataservice/docs
