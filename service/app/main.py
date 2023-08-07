@@ -13,4 +13,8 @@ def shutdown():
 
 app.include_router(service, prefix='/api/v1/configdataservice')
 
+# THINGS I WOULD ADD:
+#     - a better management of env vars with docker 
+#     - 
+
 #http://localhost:8001/api/v1/configdataservice/docs
