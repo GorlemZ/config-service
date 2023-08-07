@@ -1,11 +1,11 @@
-version: '3.8'
+version: '3.7'
 
 services:
   conf_service:
     build: ./service
     command: python -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
     volumes:
-      - ./service/app:/app/
+      - .:/service/app/
     ports:
       - 8001:8000
     environment:
@@ -14,6 +14,11 @@ services:
       - POSTGRES_DB=conf_db_dev
       #test db name is "test". If you want to change this name, you need to update the init.sql file also, in the postgres folder
       - POSTGRES_DB_T=test
+    healthcheck:
+        test: ["CMD", "curl", "-f", "http://localhost:5432"]
+        interval: 30s
+        timeout: 10s
+        retries: 5
     depends_on:
       - conf_db
 
@@ -21,7 +26,7 @@ services:
     image: postgres:12.1-alpine
     volumes:
       - postgres_data_conf:/var/lib/postgresql/data/
-      - ./postgres_scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+      #- ./postgres_scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
       - POSTGRES_USER=conf_db_username
       - POSTGRES_PASSWORD=conf_db_password

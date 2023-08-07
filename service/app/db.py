@@ -1,15 +1,14 @@
 from peewee import *
 import os
 
-isTest=True
+isTest=False
 
 USER= os.getenv('POSTGRES_USER')
 PSW= os.getenv('POSTGRES_PASSWORD')
 DB= 'test' if isTest else os.getenv('POSTGRES_DB')
+HOST= 'localhost' if isTest else 'conf_db'
 
-conn_url= f"postgresql://conf_db_username:conf_db_password@conf_db/{DB}"
-
-db= PostgresqlDatabase(conn_url)
+db= PostgresqlDatabase(DB, user=USER, password=PSW, host=HOST, port=5432)
 
 
 class ConfigDataDB(Model):
@@ -18,7 +17,6 @@ class ConfigDataDB(Model):
     value= CharField(max_length=200)
     class Meta:
       database=db
-      constraints = [SQL('UNIQUE ("name" COLLATE NOCASE)')]
       table_name='ConfigDataDB'
 
       
