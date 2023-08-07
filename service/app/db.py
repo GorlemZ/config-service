@@ -1,7 +1,7 @@
 from peewee import *
 import os
 
-isTest=False
+isTest=True
 
 USER= 'conf_db_username' if isTest else os.getenv('POSTGRES_USER')
 PSW= 'conf_db_password' if isTest else os.getenv('POSTGRES_PASSWORD')

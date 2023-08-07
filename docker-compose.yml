@@ -12,7 +12,8 @@ services:
       - POSTGRES_USER=conf_db_username
       - POSTGRES_PASSWORD=conf_db_password
       - POSTGRES_DB=conf_db_dev
-      #test db name is "test". If you want to change this name, you need to update the init.sql file also, in the postgres folder
+      #test db name is "test". If you want to change this name, you need to update the 
+      #init.sql file also, in the postgres folder, and the db.py file
       - POSTGRES_DB_T=test
     depends_on:
       conf_db:
@@ -37,14 +38,15 @@ services:
         timeout: 10s
         retries: 3
 
-  nginx:
-    image: nginx:latest
-    ports:
-      - "8080:8080"
-    volumes:
-      - ./nginx_config.conf:/etc/nginx/conf.d/default.conf
-    depends_on:
-      - conf_service
+  # in case of need, we could use nginx server for performance 
+  # nginx:
+  #   image: nginx:latest
+  #   ports:
+  #     - "8080:8080"
+  #   volumes:
+  #     - ./nginx_config.conf:/etc/nginx/conf.d/default.conf
+  #   depends_on:
+  #     - conf_service
 
 volumes:
   postgres_data_conf:
