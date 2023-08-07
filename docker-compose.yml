@@ -14,13 +14,9 @@ services:
       - POSTGRES_DB=conf_db_dev
       #test db name is "test". If you want to change this name, you need to update the init.sql file also, in the postgres folder
       - POSTGRES_DB_T=test
-    healthcheck:
-        test: ["CMD", "curl", "-f", "http://localhost:5432"]
-        interval: 30s
-        timeout: 10s
-        retries: 5
     depends_on:
-      - conf_db
+      conf_db:
+        condition: service_healthy
 
   conf_db:
     image: postgres:12.1-alpine
@@ -35,6 +31,11 @@ services:
       - "5432:5432"
     expose:
       - 5432
+    healthcheck:
+        test:  [ "CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}" ]
+        interval: 3s
+        timeout: 10s
+        retries: 3
 
   nginx:
     image: nginx:latest
